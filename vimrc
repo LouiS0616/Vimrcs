@@ -28,6 +28,7 @@ augroup LangGroup
     autocmd BufRead,BufNewFile *.java   setfiletype java
     autocmd BufRead,BufNewFile *.c      setfiletype c
     autocmd BufRead,BufNewFile *.cpp    setfiletype cpp
+    autocmd BufRead,BufNewFile *.hs     setfiletype haskell
 augroup END
 
 
