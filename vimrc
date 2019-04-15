@@ -30,14 +30,16 @@ endif
 
 
 " 参考: https://qiita.com/mitsuru793/items/2d464f30bd091f5d0fef 
-augroup LangGroup
-    autocmd!
-    autocmd BufRead,BufNewFile *.py     setfiletype python
-    autocmd BufRead,BufNewFile *.java   setfiletype java
-    autocmd BufRead,BufNewFile *.c      setfiletype c
-    autocmd BufRead,BufNewFile *.cpp    setfiletype cpp
-    autocmd BufRead,BufNewFile *.hs     setfiletype haskell
-augroup END
+" どうやらfiletypeは自動的に読み込まれているようだ。:echo &filetype で確認できる。
+"
+"augroup LangGroup
+"    autocmd!
+"    autocmd BufRead,BufNewFile *.py     setfiletype python
+"    autocmd BufRead,BufNewFile *.java   setfiletype java
+"    autocmd BufRead,BufNewFile *.cpp    setfiletype cpp
+"    autocmd BufRead,BufNewFile *.c      setfiletype c
+"    autocmd BufRead,BufNewFile *.hs     setfiletype haskell
+"augroup END
 
 
 " run terminal
