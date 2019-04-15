@@ -1,3 +1,11 @@
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+"  何故かF11及びF12が効かないので、キーバインディングは避けること。
+"
+"
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 set noswapfile
 
 set number
@@ -12,8 +20,8 @@ set backspace=indent,eol,start
 
 
 " edit vimrc
-noremap <F4>   :edit    $MYVIMRC <CR>
-noremap <S-F4> :tabedit $MYVIMRC <CR>
+" noremap <F4>   :edit    $MYVIMRC <CR>
+" noremap <S-F4> :tabedit $MYVIMRC <CR>
 noremap <F5>   :source  $MYVIMRC <CR>
 
 if !has("vim_starting")
@@ -41,4 +49,3 @@ endif
 
 "
 noremap <Esc><Esc> :noh \| :echo "検索を解除しました。" <CR>
-
