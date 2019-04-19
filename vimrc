@@ -18,6 +18,7 @@ syntax on
 set shiftwidth=4
 set tabstop=4
 set expandtab
+set nowrap
 
 set whichwrap=b,s,[,],<,>
 set backspace=indent,eol,start
