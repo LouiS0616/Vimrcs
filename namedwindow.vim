@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Copied from http://d.hatena.ne.jp/osyo-manga/20120826/1345944705  "
-" コメントは適宜加えている。                                        "
+" コメントを適宜加え、デバッグ用のコードも埋め込んだ。              "
 "                                                                   "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -133,5 +133,11 @@ function! s:echowinnames()
 \   )
 endfunction
 
-nnoremap <silent> lsbuf :ls                       <CR>
-nnoremap <silent> lswin :call <SID>echowinnames() <CR>
+
+command! -nargs=1
+\   JumpToWindow call s:split("throw 'no such window.'", <q-args>)
+
+
+"
+"nnoremap <silent> lsbuf :ls                       <CR>
+"nnoremap <silent> lswin :call <SID>echowinnames() <CR>

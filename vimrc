@@ -8,6 +8,12 @@
 
 "
 source namedwindow.vim
+source machinedependent.vim
+
+if !exists('*Subwindow') 
+    throw "prepare function 'Subwindow'"
+endif
+
 
 "
 set noswapfile
@@ -48,9 +54,12 @@ endif
 
 
 " run terminal
+" どうやら、VimEnterイベントに結び付けないといけないようである。
 if has("vim_starting")
-    terminal++rows=16
-    call feedkeys("\<C-w>\<C-j>\<CR>")
+    let w:name="main"
+    call Subwindow()
+    wincmd j
+    "JumpToWindow "main"
 endif
 
 
