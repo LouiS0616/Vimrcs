@@ -128,9 +128,14 @@ function! s:echowinnames()
     echo join(
 \       map(
 \           s:winlist(),
-\           'v:val.name ? v:val.name : "ANOUNYMOUS"'
+\           'v:val.name'
 \       ), ', '
 \   )
+endfunction
+
+
+function! AddNameToWindow(name)
+    let w:name = a:name
 endfunction
 
 
@@ -139,5 +144,5 @@ command! -nargs=1
 
 
 "
-"nnoremap <silent> lsbuf :ls                       <CR>
-"nnoremap <silent> lswin :call <SID>echowinnames() <CR>
+nnoremap <silent> lsbuf :ls                       <CR>
+nnoremap <silent> lswin :call <SID>echowinnames() <CR>

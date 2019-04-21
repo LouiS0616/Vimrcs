@@ -1,5 +1,6 @@
 source machinedependent.vim
 
 
-let winname = Subwindow()
-
+call AddNameToWindow("main")
+call Subwindow("terminal")
+JumpToWindow main

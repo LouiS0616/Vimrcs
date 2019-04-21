@@ -3,10 +3,8 @@
 source namedwindow.vim
 
 
-function! Subwindow()
-    Split "terminal"    
+function! Subwindow(name)
+    execute "Split ".a:name
     terminal ++curwin ++rows=16
-
-    return "terminal"
 endfunction
 
