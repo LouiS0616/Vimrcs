@@ -2,9 +2,6 @@
 "
 source namedwindow.vim
 
-if 1
-endif
-
 
 function! Subwindow()
     Split "terminal"    

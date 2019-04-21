@@ -52,15 +52,19 @@ endif
 "    autocmd BufRead,BufNewFile *.hs     setfiletype haskell
 "augroup END
 
+augroup WhenEntered
+    autocmd!
+    autocmd VimEnter * source vimenter.vim
+augroup END
 
 " run terminal
 " どうやら、VimEnterイベントに結び付けないといけないようである。
-if has("vim_starting")
-    let w:name="main"
-    call Subwindow()
-    wincmd j
-    "JumpToWindow "main"
-endif
+"if has("vim_starting")
+"    let w:name="main"
+"    call Subwindow()
+"    wincmd j
+"    "JumpToWindow "main"
+"endif
 
 
 "
