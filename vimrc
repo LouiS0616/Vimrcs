@@ -7,15 +7,6 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "
-source namedwindow.vim
-source machinedependent.vim
-
-if !exists('*Subwindow') 
-    throw "prepare function 'Subwindow'"
-endif
-
-
-"
 set noswapfile
 
 set number
@@ -40,7 +31,7 @@ if !has("vim_starting")
 endif
 
 
-" 参考: https://qiita.com/mitsuru793/items/2d464f30bd091f5d0fef 
+" 参考: https://qiita.com/mitsuru793/items/2d464f30bd091f5d0fef
 " どうやらfiletypeは自動的に読み込まれているようだ。:echo &filetype で確認できる。
 "
 "augroup LangGroup
@@ -57,14 +48,12 @@ augroup WhenEntered
     autocmd VimEnter * source vimenter.vim
 augroup END
 
-" run terminal
-" どうやら、VimEnterイベントに結び付けないといけないようである。
-"if has("vim_starting")
-"    let w:name="main"
-"    call Subwindow()
-"    wincmd j
-"    "JumpToWindow "main"
-"endif
+augroup WhenWritten
+    autocmd!
+    autocmd BufWrite * "%s/\s\+$//e"
+augroup END
+
+source terminalsetting.vim
 
 
 "

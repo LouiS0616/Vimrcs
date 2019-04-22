@@ -7,9 +7,8 @@
 
 
 # Sample of "machinedepent.vim"
+ターミナルウィンドウを上側に開く
 ```Vim
-"
-"
 source namedwindow.vim
 
 
@@ -19,9 +18,8 @@ function! Subwindow(name)
 endfunction
 ```
 
+ターミナルウィンドウを右側に開く
 ```Vim
-"
-"
 source namedwindow.vim
 
 
