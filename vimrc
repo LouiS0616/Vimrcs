@@ -53,7 +53,12 @@ augroup WhenWritten
     autocmd BufWrite * "%s/\s\+$//e"
 augroup END
 
-source terminalsetting.vim
+
+" TODO: terminal以外のバッファ上でqaした際も働くようにすること。 
+augroup WhenQuit
+    autocmd!
+    autocmd QuitPre *cmd.exe* q! 
+augroup END
 
 
 "
