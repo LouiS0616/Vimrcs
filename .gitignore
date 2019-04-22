@@ -5,6 +5,7 @@
 a.out
 
 tmp/*
+machinedependent.vim
 
 # accept
 !/.gitignore
