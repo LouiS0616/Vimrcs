@@ -134,6 +134,11 @@ function! s:echowinnames()
 endfunction
 
 
+function! HasWindow(name)
+    return s:winnr(a:name) != -1
+endfunction
+
+
 function! AddNameToWindow(name)
     let w:name = a:name
 endfunction

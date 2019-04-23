@@ -60,6 +60,8 @@ augroup WhenQuit
     autocmd QuitPre *cmd.exe* q! 
 augroup END
 
+source compile.vim
+
 
 "
 noremap <Esc><Esc> :noh \| :echo "ŒŸõ‚ğ‰ğœ‚µ‚Ü‚µ‚½B" <CR>
