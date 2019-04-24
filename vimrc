@@ -7,6 +7,14 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "
+" Load other source
+set runtimepath+=$HOME/vimfiles
+runtime! namedwindow.vim
+runtime! machinedependent.vim
+
+
+" 
+" Edition
 set noswapfile
 
 set number
@@ -20,10 +28,11 @@ set nowrap
 set whichwrap=b,s,[,],<,>
 set backspace=indent,eol,start
 
+inoremap <C-o> <Esc>o
 
-" edit vimrc
-" noremap <F4>   :edit    $MYVIMRC <CR>
-" noremap <S-F4> :tabedit $MYVIMRC <CR>
+
+"
+" Reload vimrc
 noremap <F5>   :source  $MYVIMRC <CR>
 
 if !has("vim_starting")
@@ -31,37 +40,68 @@ if !has("vim_starting")
 endif
 
 
-" 参考: https://qiita.com/mitsuru793/items/2d464f30bd091f5d0fef
-" どうやらfiletypeは自動的に読み込まれているようだ。:echo &filetype で確認できる。
 "
-"augroup LangGroup
-"    autocmd!
-"    autocmd BufRead,BufNewFile *.py     setfiletype python
-"    autocmd BufRead,BufNewFile *.java   setfiletype java
-"    autocmd BufRead,BufNewFile *.cpp    setfiletype cpp
-"    autocmd BufRead,BufNewFile *.c      setfiletype c
-"    autocmd BufRead,BufNewFile *.hs     setfiletype haskell
-"augroup END
+" When entered
+function! s:whenentered()
+    call AddNameToWindow("main")
+    call Subwindow("terminal")
+    JumpToWindow main
+endfunction
 
 augroup WhenEntered
     autocmd!
-    autocmd VimEnter * source vimenter.vim
+    autocmd VimEnter * call s:whenentered()
 augroup END
 
-augroup WhenWritten
+
+"
+" When save
+augroup WhenSave
     autocmd!
     autocmd BufWrite * "%s/\s\+$//e"
 augroup END
 
 
+"
+" Terminal
 " TODO: terminal以外のバッファ上でqaした際も働くようにすること。 
 augroup WhenQuit
     autocmd!
     autocmd QuitPre *cmd.exe* q! 
 augroup END
 
-source compile.vim
+
+"
+" Regex expression
+noremap <Esc><Esc> :noh \| :echo "検索を解除しました。" <CR>
 
 
 "
-noremap <Esc><Esc> :noh \| :echo "検索を解除しました。" <CR>
+" Compile
+function! s:compile()
+    let commands = {
+\       'c'         : 'gcc -Wall -Wextra -o a.out "%s"' ,
+\       'cpp'       : 'g++ -Wall -Wextra -o a.out "%s'  ,
+\       'java'      : 'javac -Xlint:all "%s"'           ,
+\       'haskell'   : 'stack ghc -- -o a.out "%s"'      ,
+\   }
+
+    if !has_key(commands, &filetype)
+        echo 'コンパイルできません。'
+        return
+    endif
+
+    "
+    let command = printf(commands[&filetype], expand('%:p'))
+    
+    if HasWindow('terminal')
+        JumpToWindow terminal
+        call feedkeys(command)
+    else
+        call Subwindow('terminal')
+        call feedkeys(command)
+    endif
+
+endfunction
+
+noremap <F4> :call <SID>compile()<CR>

@@ -9,8 +9,7 @@
 # Sample of "machinedepent.vim"
 ターミナルウィンドウを上側に開く
 ```Vim
-source namedwindow.vim
-
+runtime! namedwindow.vim
 
 function! Subwindow(name)
     execute "Split ".a:name
@@ -20,8 +19,7 @@ endfunction
 
 ターミナルウィンドウを右側に開く
 ```Vim
-source namedwindow.vim
-
+runtime! namedwindow.vim
 
 function! Subwindow(name)
     execute "VSplit ".a:name
