@@ -83,7 +83,7 @@ function! s:compile()
 \       'c'         : 'gcc -Wall -Wextra -o a.out "%s"' ,
 \       'cpp'       : 'g++ -Wall -Wextra -o a.out "%s'  ,
 \       'java'      : 'javac -Xlint:all "%s"'           ,
-\       'haskell'   : 'stack ghc -- -o a.out "%s"'      ,
+\       'haskell'   : 'stack ghc -- -Wall -o a.out "%s"'      ,
 \   }
 
     if !has_key(commands, &filetype)
